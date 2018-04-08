@@ -20,7 +20,7 @@ public class Server {
 	 */
 	public static void main(String[] args) throws Exception{
 
-
+		System.out.println("Server started");
 		ServerSocket ss = new ServerSocket(9806);
 		System.out.println("Waiting on client...");
 		Socket soc = ss.accept();
@@ -33,6 +33,7 @@ public class Server {
 		int num1 = 0;
 		int num2 = 0;
 		String result = "";
+		int flag = 0;
 
 		while(true) {
 			//reads data from the client 
@@ -54,15 +55,22 @@ public class Server {
 			case 4:
 				result = "Division is: " + (num1/num2);
 				break;
+			case 5:
+				flag = 1;
+				break;
 
 			default:
 				break;
 			}
 
+			if(flag ==1) {
+				break;
+			}
 			//sends result back to client
 			out.println(result);
 		}
 
+		System.out.println("Server terminated");
 	}
 
 }
